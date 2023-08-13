@@ -15,6 +15,9 @@ public class User {
     @Column(name="lastName")
     private String lastName;
 
+    @Column(name = "weight")
+    private double weight;
+
     public int getUserId() {
         return userId;
     }
@@ -37,5 +40,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

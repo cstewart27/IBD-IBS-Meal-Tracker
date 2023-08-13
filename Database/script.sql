@@ -1,24 +1,15 @@
 USE sys;
-DROP DATABASE IF EXISTS ibd_ibs_sympmtom_tracker;
-CREATE DATABASE ibd_ibs_sympmtom_tracker;
-USE ibd_ibs_sympmtom_tracker;
+DROP DATABASE IF EXISTS ibd_ibs_symptom_tracker;
+CREATE DATABASE ibd_ibs_symptom_tracker;
+USE ibd_ibs_symptom_tracker;
 CREATE TABLE users (
   userId INT NOT NULL AUTO_INCREMENT,
   firstName varchar(30) NOT NULL,
   lastName varchar(30) NOT NULL,
+  weight decimal(7,2) NOT NULL default 0, 
   PRIMARY KEY (userId)
 );
-CREATE TABLE `groups` (
-  groupId INT NOT NULL AUTO_INCREMENT,
-  familyName varchar(30),
-  PRIMARY KEY (groupId)
-);
-CREATE TABLE `groups_users` (
-  groupId INT NOT NULL,
-  userId INT NOT NULL UNIQUE,
-  PRIMARY KEY (userId),
-  CONSTRAINT FK_userId_group FOREIGN KEY (userId) REFERENCES users(userId)
-);
+
 create TABLE meals (
   mealId INT NOT NULL AUTO_INCREMENT,
   userId INT NOT NULL,
@@ -40,6 +31,39 @@ create TABLE meals (
   CONSTRAINT FK_userId_meal FOREIGN KEY (userId) REFERENCES users(userId)
 );
  
+CREATE TABLE symptoms (
+    symptomId INT PRIMARY KEY,
+    userId INT,
+    date DATE,
+    abdominal_pain INT CHECK (abdominal_pain >= 1 AND abdominal_pain <= 10),
+    diarrhea BOOLEAN,
+    urgency INT CHECK (urgency >=1 AND urgency <=5), 
+    constipation BOOLEAN,
+    bloody_stools BOOLEAN,
+    fatigue BOOLEAN,
+    fever BOOLEAN,
+    nausea BOOLEAN,
+    vomiting BOOLEAN,
+    joint_pain BOOLEAN,
+    skin_rashes BOOLEAN,
+    flag BOOLEAN, 
+    other_symptoms TEXT,
+    notes TEXT,
+    FOREIGN KEY (userId) REFERENCES users(userId)
+
+);
+
+CREATE TABLE bowel_movements (
+    bmId INT PRIMARY KEY,
+    userId INT,
+    date DATE,
+    bristol_stool_scale INT CHECK (bristol_stool_scale >= 1 AND bristol_stool_scale <= 6),
+    abdominal_pain INT CHECK (abdominal_pain >= 1 AND abdominal_pain <= 10),
+    blood BOOLEAN, 
+    flag BOOLEAN,
+    other_details TEXT,
+    FOREIGN KEY (userId) REFERENCES users(userId)
+);
 
 INSERT INTO users (firstName, lastName)
 VALUES ('John', 'Doe'),
@@ -72,44 +96,7 @@ VALUES ('John', 'Doe'),
   ('Avery', 'Sanchez'),
   ('Carter', 'Scott'),
   ('Scarlett', 'Ramirez');
-
-INSERT INTO `groups` (groupId, familyName)
-VALUES (1, 'Doe Family'),
-  (2, 'Johnson Family'),
-  (3, 'Brown Family'),
-  (4, 'Davis Family'),
-  (5, 'Wilson Family'),
-  (6, 'Anderson Family'),
-  (7, 'Martinez Family'),
-  (8, 'Moore Family'),
-  (9, 'Hernandez Family'),
-  (10, 'Lopez Family'),
-  (11, 'Garcia Family'),
-  (12, 'Jackson Family'),
-  (13, 'Robinson Family'),
-  (14, 'Lewis Family'),
-  (15, 'Hall Family');
  
-
-INSERT INTO `groups_users` (groupId, userId)
-VALUES (1, 1),
-  (2, 3),
-  (3, 5),
-  (4, 7),
-  (5, 9),
-  (6, 11),
-  (7, 13),
-  (8, 15),
-  (9, 17),
-  (10, 19),
-  (11, 21),
-  (12, 23),
-  (13, 25),
-  (14, 27),
-  (15, 29);
-
- 
-
 INSERT INTO meals (date, userId, mealName, calories, serving_size_g, fat_total_g, fat_saturated_g, protein_g, sodium_mg, potassium_mg, cholesterol_mg, carbohydrates_total_g, fiber_g, sugar_g)
 
 VALUES
@@ -286,21 +273,10 @@ VALUES
 
   ;
 
- 
-
--- ALTER TABLE users
-
---  ADD CONSTRAINT FK_groupId
-
---     FOREIGN KEY (groupId) REFERENCES  `groups` (groupId);
-
- 
 
 DELETE FROM meals
 
 WHERE userId = 1;
-
- 
 
 INSERT INTO meals (date, userId, mealName, calories, serving_size_g, fat_total_g, fat_saturated_g, protein_g, sodium_mg, potassium_mg, cholesterol_mg, carbohydrates_total_g, fiber_g, sugar_g) VALUES
 
