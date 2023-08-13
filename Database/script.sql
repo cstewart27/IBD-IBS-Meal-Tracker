@@ -44,8 +44,6 @@ CREATE TABLE symptoms (
     fever BOOLEAN,
     nausea BOOLEAN,
     vomiting BOOLEAN,
-    joint_pain BOOLEAN,
-    skin_rashes BOOLEAN,
     flag BOOLEAN, 
     other_symptoms TEXT,
     notes TEXT,
