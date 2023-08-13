@@ -40,4 +40,124 @@ public class Symptom {
     private String other_symptoms;
     @Column(name="notes")
     private String notes;
+
+    public int getSymptomId() {
+        return symptomId;
+    }
+
+    public void setSymptomId(int symptomId) {
+        this.symptomId = symptomId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getAbdominal_pain() {
+        return abdominal_pain;
+    }
+
+    public void setAbdominal_pain(int abdominal_pain) {
+        this.abdominal_pain = abdominal_pain;
+    }
+
+    public boolean isDiarrhea() {
+        return diarrhea;
+    }
+
+    public void setDiarrhea(boolean diarrhea) {
+        this.diarrhea = diarrhea;
+    }
+
+    public int getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(int urgency) {
+        this.urgency = urgency;
+    }
+
+    public boolean isConstipation() {
+        return constipation;
+    }
+
+    public void setConstipation(boolean constipation) {
+        this.constipation = constipation;
+    }
+
+    public boolean isBloody_stools() {
+        return bloody_stools;
+    }
+
+    public void setBloody_stools(boolean bloody_stools) {
+        this.bloody_stools = bloody_stools;
+    }
+
+    public boolean isFatigue() {
+        return fatigue;
+    }
+
+    public void setFatigue(boolean fatigue) {
+        this.fatigue = fatigue;
+    }
+
+    public boolean isFever() {
+        return fever;
+    }
+
+    public void setFever(boolean fever) {
+        this.fever = fever;
+    }
+
+    public boolean isNausea() {
+        return nausea;
+    }
+
+    public void setNausea(boolean nausea) {
+        this.nausea = nausea;
+    }
+
+    public boolean isVomiting() {
+        return vomiting;
+    }
+
+    public void setVomiting(boolean vomiting) {
+        this.vomiting = vomiting;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public String getOther_symptoms() {
+        return other_symptoms;
+    }
+
+    public void setOther_symptoms(String other_symptoms) {
+        this.other_symptoms = other_symptoms;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }
